@@ -9,9 +9,15 @@ python:
   - "3.6"
 install:
   - pip install -r requirements.txt
+  - pip install codacy-coverage
 script:
   - cd decide
   - coverage run --branch --source=. ./manage.py test --keepdb --with-xunit
   - coverage xml
   - python-codacy-coverage -r coverage.xml
-  - cosa
+notifications:
+  email:
+    recipients:
+     -saradg1995@gmail.com
+    on_success: always
+    on_failure: always
